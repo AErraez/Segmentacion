@@ -61,7 +61,7 @@ boton.addEventListener("click", () => {
       let buttonsHtml = similist
         .map(
           (s) =>
-            `<div class="col">
+            `<div class="col-2">
               <button class="contratante-but btn btn-outline-primary w-100" 
                 data-line="${idx}" 
                 data-sistema="${s.SISTEMA}" 
@@ -76,7 +76,7 @@ boton.addEventListener("click", () => {
         .join("");
 
       let searchHtml = `
-        <div class="col-4">
+        <div class="col-3">
           <input type="text" class="form-control mini-search" autocomplete="off" 
             placeholder="Buscar manualmente..." 
             data-line="${idx}">
