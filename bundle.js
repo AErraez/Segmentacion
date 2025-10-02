@@ -77,7 +77,7 @@ boton.addEventListener("click", () => {
 
       let searchHtml = `
         <div class="col-4">
-          <input type="text" class="form-control mini-search autocomplete="off"" 
+          <input type="text" class="form-control mini-search" autocomplete="off" 
             placeholder="Buscar manualmente..." 
             data-line="${idx}">
           <div class="mini-results list-group mt-1" data-line="${idx}"></div>
