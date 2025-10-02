@@ -86,7 +86,7 @@ boton.addEventListener("click", () => {
 
       let rowHtml = `
         <div class="row py-2 align-items-center" data-line="${idx}">
-          <div class="col-3"><strong>${element}</strong> ⇒ </div>
+          <div class="col-3">${element} ⇒ </div>
           ${buttonsHtml}
           ${searchHtml}
         </div>`;
