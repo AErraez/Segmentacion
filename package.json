@@ -1,0 +1,15 @@
+{
+  "name": "segmentacion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^17.0.1",
+    "string-similarity": "^4.0.4"
+  }
+}
