@@ -19,6 +19,8 @@ function findSimilarContratantes(data, inputContratante) {
       SEGMENTO: data[i]["SEGMENTO"],
       CONTRATANTE: data[i]["CONTRATANTE"],
       IDENTIFICACION: data[i]["IDENTIFICACION"],
+      PLAZA: data[i]["PLAZA"],
+      CANAL: data[i]["CANAL DISTRIBUCION"],
       similarityScore
     });
   }
@@ -65,6 +67,8 @@ boton.addEventListener("click", () => {
                 data-segmento="${s.SEGMENTO}"
                 data-contratante="${s.CONTRATANTE}" 
                 data-identificacion="${s.IDENTIFICACION}"
+                data-plaza="${s.PLAZA}"
+                data-canal="${s.CANAL}"
                 data-score="${s.similarityScore}">
                 ${s.CONTRATANTE}
               </button>
@@ -124,7 +128,9 @@ searchInput.addEventListener("input", () => {
           data-sistema="${c.SISTEMA}"
           data-segmento="${c.SEGMENTO}"
           data-contratante="${c.CONTRATANTE}"
-          data-identificacion="${c.IDENTIFICACION}">
+          data-identificacion="${c.IDENTIFICACION}"
+          data-plaza="${c.PLAZA}"
+          data-canal="${c["CANAL DISTRIBUCION"]}">
           ${c.CONTRATANTE} (${c.IDENTIFICACION})
         </button>
       </div>
@@ -155,7 +161,9 @@ function attachButtonEvents() {
         SISTEMA: but.dataset.sistema,
         SEGMENTO: but.dataset.segmento,
         CONTRATANTE: but.dataset.contratante,
-        IDENTIFICACION: but.dataset.identificacion
+        IDENTIFICACION: but.dataset.identificacion,
+        PLAZA: but.dataset.plaza,
+        CANAL: but.dataset.canal
       };
 
       renderFinalTable();
@@ -172,7 +180,9 @@ function attachManualButtonEvents() {
         SISTEMA: but.dataset.sistema,
         SEGMENTO: but.dataset.segmento,
         CONTRATANTE: but.dataset.contratante,
-        IDENTIFICACION: but.dataset.identificacion
+        IDENTIFICACION: but.dataset.identificacion,
+        PLAZA: but.dataset.plaza,
+        CANAL: but.dataset.canal
       };
 
       let key = "manual-" + obj.CONTRATANTE + "-" + obj.IDENTIFICACION;
@@ -207,13 +217,17 @@ function attachMiniSearchEvents() {
         btn.dataset.segmento = c.SEGMENTO;
         btn.dataset.contratante = c.CONTRATANTE;
         btn.dataset.identificacion = c.IDENTIFICACION;
+        btn.dataset.canal = c["CANAL DISTRIBUCION"];
+        btn.dataset.plaza = c.PLAZA
 
         btn.addEventListener("click", () => {
           selectedPerLine[line] = {
             SISTEMA: btn.dataset.sistema,
             SEGMENTO: btn.dataset.segmento,
             CONTRATANTE: btn.dataset.contratante,
-            IDENTIFICACION: btn.dataset.identificacion
+            IDENTIFICACION: btn.dataset.identificacion,
+            PLAZA: btn.dataset.plaza,
+            CANAL: btn.dataset.canal
           };
 
           resultsDiv.innerHTML = "";
@@ -255,24 +269,28 @@ function renderFinalTable() {
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>SISTEMA</th>
-          <th>SEGMENTO</th>
           <th>CONTRATANTE</th>
           <th>IDENTIFICACION</th>
+          <th>SEGMENTO</th>
+          <th>PLAZA</th>
+          <th>SISTEMA</th>
+          <th>CANAL</th>
         </tr>
       </thead>
       <tbody>
         ${uniqueValues
-          .map(
-            (r) =>
-              `<tr>
-                <td>${r.SISTEMA}</td>
-                <td>${r.SEGMENTO}</td>
-                <td>${r.CONTRATANTE}</td>
-                <td>${r.IDENTIFICACION}</td>
-              </tr>`
-          )
-          .join("")}
+      .map(
+        (r) =>
+          `<tr>
+              <td>${r.CONTRATANTE}</td>
+              <td>${r.IDENTIFICACION}</td>
+              <td class='${r.SEGMENTO}'>${r.SEGMENTO}</td>
+              <td>${r.PLAZA}</td>
+              <td>${r.SISTEMA}</td>
+              <td>${r.CANAL}</td>
+            </tr>`
+      )
+      .join("")}
       </tbody>
     </table>
   `;
